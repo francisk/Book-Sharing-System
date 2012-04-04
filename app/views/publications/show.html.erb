@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+   <%= link_to @publication.title, "http://book.douban.com/isbn/" + @publication.isbn + "/", {:target => "_blank"} %>
+</p>
+
+<p>
+  <b>Cover:</b>
+  <%= @publication.cover %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%= @publication.state %>
+</p>
+
+<p>
+  <b>Contributor:</b>
+  <%= @publication.contributor.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_publication_path(@publication) %> |
+<%= link_to 'Back', publications_path %>
