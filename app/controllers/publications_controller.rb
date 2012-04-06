@@ -110,16 +110,15 @@ class PublicationsController < ApplicationController
   
   def queryJson(isbn)
     url = URI.parse('http://api.douban.com/book/subject/isbn/' + isbn)
-    Net::HTTP::Proxy("10.1.159.48", "808", "javajava", "javajava").start(url.host, url.port) do |http|
-    # Net::HTTP.start(url.host, url.port) do |http|
+    # Net::HTTP::Proxy("10.1.159.48", "808", "javajava", "javajava").start(url.host, url.port) do |http|
+    Net::HTTP.start(url.host, url.port) do |http|
       req = Net::HTTP::Get.new(url.path + "?apikey=" + @@apikey + "&alt=json")
       json = http.request(req).body
     end
   end
   
   def fillAttributes(attributes, publication)
-    for i in 0..attributes.length
-      attribute = attributes[i]
+    attributes.each do |attribute|
       if attribute != nil
         publication.additional_attributes.create!(:name => attribute["@name"], :value => attribute["$t"])
       end
@@ -127,8 +126,7 @@ class PublicationsController < ApplicationController
   end
   
   def fillTags(tags, publication)
-    for i in 0..tags.length
-      tag = tags[i]
+    tags.each do |tag|
       if tag != nil
         tagName = tag["@name"]
         publication.tags.create!(:name => tagName)
@@ -137,18 +135,17 @@ class PublicationsController < ApplicationController
   end
   
   def fillLinks(links, publication)
-    for i in 0..links.length
-      link = links[i]
-      if link != nil
-        rel = link["@rel"]
-        href = link["@href"]
-        if rel == "image"
-          publication.cover = href
+      links.each do |link|
+        if link != nil
+          rel = link["@rel"]
+          href = link["@href"]
+          if rel == "image"
+            publication.cover = href
+          end
+          if rel == "alternate"
+            publication.doubanURL = href
+          end
         end
-        if rel == "alternate"
-          publication.doubanURL = href
-        end
-      end
-    end
+     end 
   end
 end
