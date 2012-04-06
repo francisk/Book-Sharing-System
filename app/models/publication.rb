@@ -18,30 +18,34 @@ class Publication < ActiveRecord::Base
     end                       
   end
   
-  def translators
-    additional_attributes.find_all_by_name("translator")
+  def getAttr(attrName)
+    additional_attributes.find_by_name(attrName).value
   end
   
   def publisher
-    additional_attributes.find_by_name("publisher").value
+    getAttr("publisher")
   end
   
   def pubdate
-    additional_attributes.find_by_name("pubdate").value
+    getAttr("pubdate")
   end
   
   def pages
-    additional_attributes.find_by_name("pages").value
+    getAttr("pages")
   end
   
   def price
-    additional_attributes.find_by_name("price").value
+    getAttr("price")
   end
   
   def binding
-    additional_attributes.find_by_name("binding").value
+    getAttr("binding")
   end
   
+  def translators
+    additional_attributes.find_all_by_name("translator")
+  end
+    
   def count
     Publication.find_all_by_isbn(isbn).length
   end
