@@ -1,37 +1,57 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Title:</b>
-   <%= link_to @publication.title, "http://book.douban.com/isbn/" + @publication.isbn + "/", {:target => "_blank"} %>
-</p>
+	<div class="title">
+		<h1>
+			<%= @publication.title %>
+		</h1>
+	</div>
+	<div class="subject">
+		<div id="mainpic">
+			<%= image_tag @publication.cover %>
+		</div>
+		<div id="info">
+			<span>
+				<span class="pl">作者</span>: <%= @publication.additional_attributes.find_by_name("author").value %>
+			</span>
+			<br>
+			<span>
+				<span class="pl">译者</span>: <% @publication.translators.each { |translator| %>
+				<%= translator.value %>
+				<% } %>
+			</span>
+			<br>
+			<span class="pl">出版社:</span> <%= @publication.publisher %><br>
+			<span class="pl">出版年:</span> <%= @publication.pubdate %><br>
+			<span class="pl">页数:</span> <%= @publication.pages %> <br>
+			<span class="pl">定价:</span> <%= @publication.price %><br>
+			<span class="pl">装帧:</span> <%= @publication.binding %><br>
+			<span class="pl">ISBN:</span> <%= @publication.isbn %><br>
+		</div>
+	</div>
+	<p>
+		<b>Count:</b>
+		<%= @publication.count %>
+	</p>
+	
+	<p>
+		<b>State:</b>
+		<%= @publication.status %>
+	</p>
 
-<p>
-  <b>Author:</b>
-  <%= @publication.author %>
-</p>
+	<p>
+		<b>Contributor:</b>
+		<%= @publication.contributor.name %>
+	</p>
 
-<p>
-  <b>Cover:</b>
-  <%= image_tag @publication.cover %>
-</p>
+	<p>
+		<b>Tags:</b>
+		<span class="tags">
+		<% @publication.tags.each { |tag| %>
+			<%= tag.name %>
+		<% } %>
+		</span>
+	</p>
 
-<p>
-  <b>State:</b>
-  <%= @publication.status %>
-</p>
-
-<p>
-  <b>Contributor:</b>
-  <%= @publication.contributor.name %>
-</p>
-
-<p>
-  <b>Tags:</b>
-	<% @publication.tags.each { |tag| %>
-	<li><%= tag.name %></li>
-	<% } %>
-</p>
-
-
-<%= link_to 'Edit', edit_publication_path(@publication) %> |
-<%= link_to 'Back', publications_path %>
+		<%= link_to 'Edit', edit_publication_path(@publication) %> |
+		<%= link_to 'Back', publications_path %>

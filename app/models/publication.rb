@@ -18,6 +18,35 @@ class Publication < ActiveRecord::Base
     end                       
   end
   
+  def translators
+    additional_attributes.find_all_by_name("translator")
+  end
+  
+  def publisher
+    additional_attributes.find_by_name("publisher").value
+  end
+  
+  def pubdate
+    additional_attributes.find_by_name("pubdate").value
+  end
+  
+  def pages
+    additional_attributes.find_by_name("pages").value
+  end
+  
+  def price
+    additional_attributes.find_by_name("price").value
+  end
+  
+  def binding
+    additional_attributes.find_by_name("binding").value
+  end
+  
+  def count
+    Publication.find_all_by_isbn(isbn).length
+  end
+  
+  
   validates :isbn, :length => { :minimum => 10, :maximum => 13, },
                         :presence => true
   

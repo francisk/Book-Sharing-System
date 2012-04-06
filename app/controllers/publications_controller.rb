@@ -110,8 +110,8 @@ class PublicationsController < ApplicationController
   
   def queryJson(isbn)
     url = URI.parse('http://api.douban.com/book/subject/isbn/' + isbn)
-    # Net::HTTP::Proxy("10.1.159.48", "808", "javajava", "javajava").start(url.host, url.port) do |http|
-    Net::HTTP.start(url.host, url.port) do |http|
+    Net::HTTP::Proxy("10.1.159.48", "808", "javajava", "javajava").start(url.host, url.port) do |http|
+    # Net::HTTP.start(url.host, url.port) do |http|
       req = Net::HTTP::Get.new(url.path + "?apikey=" + @@apikey + "&alt=json")
       json = http.request(req).body
     end
