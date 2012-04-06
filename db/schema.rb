@@ -10,16 +10,35 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120403144214) do
+ActiveRecord::Schema.define(:version => 20120405064633) do
+
+  create_table "attributes", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.integer  "publication_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
   create_table "publications", :force => true do |t|
     t.string   "isbn"
     t.string   "title"
+    t.string   "author"
+    t.string   "summary"
     t.string   "cover"
+    t.string   "doubanURL"
     t.integer  "state"
-    t.integer  "contributor"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "contributor_id"
+    t.string   "location"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.integer  "publication_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|

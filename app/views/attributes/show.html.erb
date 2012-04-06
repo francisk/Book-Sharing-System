@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @attribute.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @attribute.value %>
+</p>
+
+<p>
+  <b>Publication:</b>
+  <%= @attribute.publication %>
+</p>
+
+
+<%= link_to 'Edit', edit_attribute_path(@attribute) %> |
+<%= link_to 'Back', attributes_path %>

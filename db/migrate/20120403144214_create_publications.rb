@@ -4,14 +4,11 @@ class CreatePublications < ActiveRecord::Migration
       t.string :isbn
       t.string :title
       t.string :author
-      t.string :translator
       t.string :summary
-      t.float :price
-      t.integer :pages
-      t.text :author_intro
       t.string :cover
+      t.string :doubanURL
       t.integer :state
-      t.integer :contributor
+      t.integer :contributor_id
       t.string :location
 
       t.timestamps

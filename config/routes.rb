@@ -1,4 +1,8 @@
 Book::Application.routes.draw do
+  resources :attributes
+
+  resources :tags
+
   resources :publications
 
   resources :users

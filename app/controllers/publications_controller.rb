@@ -1,4 +1,10 @@
+require 'net/http'
+require 'json'
+
 class PublicationsController < ApplicationController
+
+  @@apikey = "0151de22e015f5a903f59a68a041e0fb"
+  
   # GET /publications
   # GET /publications.json
   def index
@@ -14,7 +20,7 @@ class PublicationsController < ApplicationController
   # GET /publications/1.json
   def show
     @publication = Publication.find(params[:id])
-    # DoubanApi.queryBookInfo("9787111303268")
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render :json => @publication }
@@ -41,6 +47,14 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(params[:publication])
+    @publication.state = Publication::STATE_NOT_AUTH
+    @publication.save
+    
+    @publication.contributor = User.first
+    isbn = params[:publication]["isbn"]
+    if isbn != ""
+      fillBookInfo(isbn, @publication)
+    end
 
     respond_to do |format|
       if @publication.save
@@ -78,6 +92,63 @@ class PublicationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to publications_url }
       format.json { head :no_content }
+    end
+  end
+  
+  private
+  # Douban api
+  def fillBookInfo(isbn, publication)
+    bookInfo = ActiveSupport::JSON.decode(queryJson(isbn))
+    publication.title = bookInfo["title"]["$t"]
+    publication.author = bookInfo["author"][0]["name"]["$t"]
+    publication.summary = bookInfo["summary"]["$t"]
+    
+    fillLinks(bookInfo["link"], publication)
+    fillAttributes(bookInfo["db:attribute"], publication)
+    fillTags(bookInfo["db:tag"], publication)
+  end
+  
+  def queryJson(isbn)
+    url = URI.parse('http://api.douban.com/book/subject/isbn/' + isbn)
+    # Net::HTTP::Proxy("10.1.159.48", "808", "javajava", "javajava").start(url.host, url.port) do |http|
+    Net::HTTP.start(url.host, url.port) do |http|
+      req = Net::HTTP::Get.new(url.path + "?apikey=" + @@apikey + "&alt=json")
+      json = http.request(req).body
+    end
+  end
+  
+  def fillAttributes(attributes, publication)
+    for i in 0..attributes.length
+      attribute = attributes[i]
+      if attribute != nil
+        publication.additional_attributes.create!(:name => attribute["@name"], :value => attribute["$t"])
+      end
+    end
+  end
+  
+  def fillTags(tags, publication)
+    for i in 0..tags.length
+      tag = tags[i]
+      if tag != nil
+        tagName = tag["@name"]
+        publication.tags.create!(:name => tagName)
+      end
+    end
+  end
+  
+  def fillLinks(links, publication)
+    for i in 0..links.length
+      link = links[i]
+      if link != nil
+        rel = link["@rel"]
+        href = link["@href"]
+        if rel == "image"
+          publication.cover = href
+        end
+        if rel == "alternate"
+          publication.doubanURL = href
+        end
+      end
     end
   end
 end

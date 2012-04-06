@@ -18,7 +18,7 @@
     <td><%= publication.title %></td>
     <td><%= publication.cover %></td>
     <td><%= publication.state %></td>
-    <td><%= publication.contributor %></td>
+    <td><%= publication.contributor.name %></td>
     <td><%= link_to 'Show', publication %></td>
     <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
     <td><%= link_to 'Destroy', publication, :confirm => 'Are you sure?', :method => :delete %></td>

@@ -6,18 +6,30 @@
 </p>
 
 <p>
+  <b>Author:</b>
+  <%= @publication.author %>
+</p>
+
+<p>
   <b>Cover:</b>
-  <%= @publication.cover %>
+  <%= image_tag @publication.cover %>
 </p>
 
 <p>
   <b>State:</b>
-  <%= @publication.state %>
+  <%= @publication.status %>
 </p>
 
 <p>
   <b>Contributor:</b>
   <%= @publication.contributor.name %>
+</p>
+
+<p>
+  <b>Tags:</b>
+	<% @publication.tags.each { |tag| %>
+	<li><%= tag.name %></li>
+	<% } %>
 </p>
 
 
