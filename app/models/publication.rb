@@ -51,6 +51,9 @@ class Publication < ActiveRecord::Base
                         :presence => true
   
   belongs_to :contributor, :class_name => "User", :foreign_key => "contributor_id"
-  has_many :tags
-  has_many :additional_attributes, :class_name => "Attribute", :foreign_key => "publication_id"
+  has_many :tags, :dependent => :destroy
+  has_many :additional_attributes, 
+                  :class_name => "Attribute", 
+                  :foreign_key => "publication_id",
+                  :dependent => :destroy
 end
