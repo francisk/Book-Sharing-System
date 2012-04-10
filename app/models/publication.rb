@@ -2,20 +2,14 @@ class Publication < ActiveRecord::Base
   # attr_accessible :contributor, :cover, :isbn, :state, :title, :author, :summary, :doubanURL
   attr_accessible :isbn, :location
   
+  STATE = ["未审核", "在馆", "借出"]
+  
   STATE_NOT_AUTH = 0
   STATE_IN = 1
   STATE_NOT_IN = 2
   
   def status
-    if state == STATE_NOT_AUTH
-      return "未审核"
-    end
-    if state == STATE_IN
-      return "在馆"
-    end
-    if state == STATE_NOT_IN
-      return "借出"
-    end                       
+    STATE[state]
   end
   
   def getAttr(attrName)
