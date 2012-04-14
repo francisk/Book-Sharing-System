@@ -1,14 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Book</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+	<title>Book</title>
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+	<div id="wrapper">
+		<div id="header">
+			<div id="masthead">
+				<div id="logo">
+					<img src="http://nali.me/data/attachment/album/201202/26/175404kwukbh7k7uyzdkt1.png" title="途趣" alt="途趣">
+				</div>
+				<div id="searchf">
+					<form method="get" id="searchform" action="#">
+						<input type="text" name="s" id="searchbox" class="searchfield" value="Search" onfocus="if(this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}">
+					</form>
+				</div>
+				<div class="clear"></div>
 
-<%= yield %>
-
-</body>
-</html>
+				<div id="access">
+					<div class="menu">
+						<ul>
+							<li class="current_page_item">
+								<a href="http://m.ituqu.com/" title="首页">首页</a>
+							</li>
+							<li class="page_item page-item-200"><a href="http://m.ituqu.com/?page_id=200">我的借阅</a></li>
+							<li class="page_item page-item-102"><a href="http://m.ituqu.com/?page_id=102">我的分享</a>
+							</li>
+						</ul>
+					</div>
+				</div><!-- #access -->
+			</div><!-- #masthead -->
+		</div>
+		<div id="main">
+			<div id="content">
+				<%= yield %>
+			</div>
+			<div id="aside">
+				<div id="newest">
+					<h2>最新分享</h2>
+					<ul>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+					</ul>
+				</div>
+				<div id="hotest">
+					<h2>最热分享</h2>
+					<ul>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+						<li><a href="#">少有人走的路</a></li>
+					</ul>
+				</div>
+				<div id="users">
+					<h2>贡献排行</h2>
+					<ul>
+						<li><a href="#">XXX</a></li>
+						<li><a href="#">XXX</a></li>
+						<li><a href="#">XXX</a></li>
+						<li><a href="#">XXX</a></li>
+						<li><a href="#">XXX</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div id="footer">
+			<div id="site-generator">
+				© 2012 4US Library. Powered by <a href="http://rubyonrails.org" title="Ruby on Rails" rel="generator">Rails</a>.
+			</div>
+			<div id="site-info">
+				Designed by <a href="http://weibo.com/youngmanhere">Seaborn Lee</a>
+			</div>
+		</div>
+	</body>
+	</html>

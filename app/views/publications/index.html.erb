@@ -1,31 +1,3 @@
-<h1>Listing publications</h1>
-
-<table>
-  <tr>
-    <th>Isbn</th>
-    <th>Title</th>
-    <th>Cover</th>
-    <th>State</th>
-    <th>Contributor</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @publications.each do |publication| %>
-  <tr>
-    <td><%= publication.isbn %></td>
-    <td><%= publication.title %></td>
-    <td><%= publication.cover %></td>
-    <td><%= publication.state %></td>
-    <td><%= publication.contributor.name %></td>
-    <td><%= link_to 'Show', publication %></td>
-    <td><%= link_to 'Edit', edit_publication_path(publication) %></td>
-    <td><%= link_to 'Destroy', publication, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Publication', new_publication_path %>
+<div class="right_list" name="__BangList">
+<%= render (@publications) %>
+</div>

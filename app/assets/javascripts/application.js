@@ -13,3 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function() {
+	// $(".book_list").mouseover(function() {
+	// 		$(this).addClass("item_hover");
+	// 	});
+	// 	$(".book_list").mouseout(function() {
+	// 		$(this).removeClass("item_hover");
+	// 	});
+});
