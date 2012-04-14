@@ -1,7 +1,6 @@
 class Publication < ActiveRecord::Base
-  # attr_accessible :contributor, :cover, :isbn, :state, :title, :author, :summary, :doubanURL
-  attr_accessible :isbn, :location
-  
+  attr_accessible :contributor, :cover, :isbn, :state, :title, :author, :summary, :doubanURL, :location
+
   STATE = ["未审核", "在馆", "借出"]
   
   STATE_NOT_AUTH = 0
