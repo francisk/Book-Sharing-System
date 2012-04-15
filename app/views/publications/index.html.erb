@@ -1,3 +1,10 @@
 <div class="right_list" name="__BangList">
-<%= render (@publications) %>
+	<div id="paging_bar" class="flickr_pagination">
+		<%= will_paginate @publications, :container => false %>
+	</div>
+	
+	<%= render (@publications) %>
+	<div id="paging_bar" class="flickr_pagination">
+		<%= will_paginate @publications, :container => false %>
+	</div>
 </div>

@@ -7,9 +7,9 @@
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
 
 Publication.delete_all
-0..10.times do |publication|
+(0..100).each do |i|
   book = Publication.create :cover => 'http://img1.douban.com/spic/s2144391.jpg', :state => Publication::STATE_NOT_AUTH,
-  :title => '少有人走的路', :isbn => '90011122233', :author => 'James Gosling', :summary => "fdkjfkdkfjkskjfjksjdfjsjdfskdjfksdf",
+  :title => "少有人走的路#{i}", :isbn => '90011122233', :author => 'James Gosling', :summary => "fdkjfkdkfjkskjfjksjdfjsjdfskdjfksdf",
   :doubanURL => 'http://book.douban.com', :contributor => User.first
   
   book.additional_attributes.create :name => "translator", :value => "Li Lei" 
