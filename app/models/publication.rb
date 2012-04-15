@@ -48,6 +48,10 @@ class Publication < ActiveRecord::Base
     Publication.find_all_by_isbn(isbn).length
   end
   
+  def publications
+    Publication.group(:contributor_id).find_all_by_isbn(isbn)
+  end
+  
   
   validates :isbn, :length => { :minimum => 10, :maximum => 13, },
                         :presence => true

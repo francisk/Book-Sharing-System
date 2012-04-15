@@ -24,16 +24,15 @@
 		</ul>
 	</div>
 	<div class="arrow">
+		<span class="strong">谁有这本书：</span>
+		<hr />
 		<ul>
-			<li class="count">
-				<span class="strong">谁有这本书：</span>
-				<hr />
-				<ul>
-					<li>李小波（1）</li>
-					<li>李小波（1）</li>
-					<li>李小波（1）</li>
-				</ul>
+			<% publication.publications.each do |publication| %>
+			<li>
+				<%= link_to publication.contributor.name, publication %>
 			</li>
+			<% end %>
+		</ul>
 			<!-- <li class="action">
 							<span class="btn_collect">
 								<%= image_tag "btn_buy.gif" %>
@@ -42,6 +41,5 @@
 								<%= image_tag "btn_buy.gif" %>
 							</span>
 						</li> -->
-		</ul>
 	</div>
 </div>
