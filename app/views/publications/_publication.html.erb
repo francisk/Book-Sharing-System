@@ -4,14 +4,13 @@
 	</div>
 	<div class="book_info">
 		<ul>
-			<li class="bookname blue"><%= publication.title %></li>
-			<li class="author">作者：<%= publication.author %>　著
+			<li class="bookname blue">
+				<%= link_to publication.title, publication %>
+			</li>
+			<li class="author">作者：<%= publication.authors %>　著
 				<% if !publication.translators.empty? %>
 					，
-					<% publication.translators.each do |translator|%>
-						<%= translator.value %>
-					<% end %>
-					译
+					<%= publication.translators%>　译
 				<% end %>
 			</li>
 			<li class="press">出版社：<%= publication.publisher %></li>

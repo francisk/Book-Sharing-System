@@ -46,14 +46,16 @@ class PublicationsController < ApplicationController
   # POST /publications
   # POST /publications.json
   def create
-    @publication = Publication.new(params[:publication])
-    @publication.state = Publication::STATE_NOT_AUTH
-    @publication.save
+    Publication.transaction do
+      @publication = Publication.new(params[:publication])
+      @publication.state = Publication::STATE_NOT_AUTH
+      @publication.save
     
-    @publication.contributor = User.first
-    isbn = params[:publication]["isbn"]
-    if isbn != ""
-      fillBookInfo(isbn, @publication)
+      @publication.contributor = User.first
+      isbn = params[:publication]["isbn"]
+      if isbn != ""
+        fillBookInfo(isbn, @publication)
+      end
     end
 
     respond_to do |format|
@@ -100,7 +102,6 @@ class PublicationsController < ApplicationController
   def fillBookInfo(isbn, publication)
     bookInfo = ActiveSupport::JSON.decode(queryJson(isbn))
     publication.title = bookInfo["title"]["$t"]
-    publication.author = bookInfo["author"][0]["name"]["$t"]
     publication.summary = bookInfo["summary"]["$t"]
     
     fillLinks(bookInfo["link"], publication)

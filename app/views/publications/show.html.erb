@@ -12,20 +12,22 @@
 		</div>
 		<div id="info">
 			<span>
-				<span class="pl">作者</span>: <%= @publication.additional_attributes.find_by_name("author").value %>
+				<span class="pl">作者</span>: <%= @publication.authors %>
 			</span>
 			<br>
+			<% if !@publication.translators.blank? %>
 			<span>
-				<span class="pl">译者</span>: <% @publication.translators.each { |translator| %>
-				<%= translator.value %>
-				<% } %>
+				<span class="pl">译者</span>: <%= @publication.translators %>
 			</span>
 			<br>
+			<% end %>
 			<span class="pl">出版社:</span> <%= @publication.publisher %><br>
 			<span class="pl">出版年:</span> <%= @publication.pubdate %><br>
 			<span class="pl">页数:</span> <%= @publication.pages %> <br>
 			<span class="pl">定价:</span> <%= @publication.price %><br>
-			<span class="pl">装帧:</span> <%= @publication.binding %><br>
+			<% if !@publication.binding.blank? %>
+				<span class="pl">装帧:</span> <%= @publication.binding %><br>
+			<% end %>
 			<span class="pl">ISBN:</span> <%= @publication.isbn %><br>
 		</div>
 	</div>

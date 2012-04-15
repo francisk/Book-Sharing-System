@@ -1,5 +1,5 @@
 class Publication < ActiveRecord::Base
-  attr_accessible :contributor, :cover, :isbn, :state, :title, :author, :summary, :doubanURL, :location
+  attr_accessible :contributor, :cover, :isbn, :state, :title, :summary, :doubanURL, :location
 
   STATE = ["未审核", "在馆", "借出"]
   
@@ -12,7 +12,8 @@ class Publication < ActiveRecord::Base
   end
   
   def getAttr(attrName)
-    additional_attributes.find_by_name(attrName).value
+    attribute = additional_attributes.find_by_name(attrName)
+    return attribute.value unless attribute.nil?
   end
   
   def publisher
@@ -36,9 +37,13 @@ class Publication < ActiveRecord::Base
   end
   
   def translators
-    additional_attributes.find_all_by_name("translator")
+    additional_attributes.find_all_by_name("translator").map  { |translator| translator.value }.join("　")
   end
     
+  def authors
+    additional_attributes.find_all_by_name("author").map { |author| author.value }.join("　")
+  end
+  
   def count
     Publication.find_all_by_isbn(isbn).length
   end

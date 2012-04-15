@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120405064633) do
+ActiveRecord::Schema.define(:version => 20120415031449) do
 
   create_table "attributes", :force => true do |t|
     t.string   "name"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(:version => 20120405064633) do
   create_table "publications", :force => true do |t|
     t.string   "isbn"
     t.string   "title"
-    t.string   "author"
     t.string   "summary"
     t.string   "cover"
     t.string   "doubanURL"
