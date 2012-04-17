@@ -1,0 +1,37 @@
+<div id="div_order_all">
+	<div class="business_box">
+		<div class="business_box_border">
+			<div>
+				<div id="rpt_cart_items">
+					<ul class="shoppingcart_subject">
+						<li class="row1">名称</li>
+						<li class="row2">自提点</li>
+						<li class="row3">贡献人</li>
+						<li class="row4">价格</li>
+					</ul>
+					<div class="shoppingcart_general">
+						<ul class="shoppingcart_list" name="ul_20959929" id="ul_20959929">
+							<li class="row1">
+								<%= @publication.title %>
+							</li>
+							<li class="row2">
+								<%= @publication.location %>
+							</li>
+							<li class="row3">
+								<%= @publication.contributor.name %>
+							</li>
+							<li class="row4 price_pre">
+								<%= @publication.price %>
+							</li>
+						</ul>
+						<br class="clear">
+						<span class="price_charge_border"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="confirm">
+	<%= button_to "OK", :action => "create", :publication_id => @publication.id %>
+</div>

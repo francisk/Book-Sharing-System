@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  publication_id: 1
+  reader_id: 1
+  auditDate: 2012-04-17
+  revertDate: 2012-04-17
+
+two:
+  publication_id: 1
+  reader_id: 1
+  auditDate: 2012-04-17
+  revertDate: 2012-04-17

@@ -1,4 +1,6 @@
 Book::Application.routes.draw do
+  resources :orders
+
   resources :attributes
 
   resources :tags

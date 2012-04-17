@@ -15,8 +15,3 @@
 //= require_tree .
 $(document).ready(function() {
 });
-function borrow() {
-	if (confirm("Are you sure?")) {
-		location.href = "";
-	}
-}
