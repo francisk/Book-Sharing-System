@@ -4,6 +4,7 @@ body {
 	font-family: 宋体,Arial,Helvetica,sans-serif;
 	font-size: 12px;
 	color: #404040;
+	line-height: 162%;
 }
 
 *{margin:0;padding:0}
@@ -16,9 +17,23 @@ hr {
 	margin-bottom: 18px;
 }
 
+h1 {
+word-wrap: break-word;
+display: block;
+font-size: 25px;
+font-weight: bold;
+color: #494949;
+margin: 0;
+padding: 0 0 15px 0;
+line-height: 1.1;
+}
+
 * ul,* ol,* li {list-style:none}
 .arial{ font-family:Arial, Helvetica, sans-serif;}
 .strong{ font-weight:bold;}
+.indent {
+	word-break: break-all;
+}
 /* Text elements */
 input[type="text"],
 textarea {
@@ -38,6 +53,10 @@ a:visited {
 a:active,
 a:hover {
 	color: #353535;
+}
+
+.clearfix {
+	display: block;
 }
 
 /* Text meant only for screen readers */
@@ -206,6 +225,7 @@ div.menu li {
 	float: left;
 	padding: 0 20px;
 	border-right: 1px solid #D1D1D1;
+	width: 601px;
 }
 
 #aside {
@@ -321,3 +341,37 @@ input#searchbox {
 }
 
 span.price_pre{text-decoration:line-through; font-size:12px; color:#9c9c9c;}
+
+.subject {
+	float: left;
+	width: 615px;
+}
+#mainpic {
+	margin: 3px 0 0 0;
+	float: left;
+	text-align: center;
+	margin: 3px 12px 0 0;
+	max-width: 155px;
+	overflow: hidden;
+}
+
+#mainpic img {
+    width: 102px;
+	height: 155px;
+}
+
+#info {
+	float: left;
+	max-width: 248px;
+	word-wrap: break-word;
+}
+
+#info ul li{height:20px;}
+
+.related_info h2{
+	margin-top:24px;
+	margin-bottom:3px;
+	font: 14px Arial,Helvetica,sans-serif;
+	color: #060;
+	line-height: 150%;
+}

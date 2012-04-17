@@ -1,59 +1,50 @@
-<p id="notice"><%= notice %></p>
-
 <p>
 	<div class="title">
 		<h1>
 			<%= @publication.title %>
 		</h1>
 	</div>
-	<div class="subject">
+	<div class="subject clearfix">
 		<div id="mainpic">
 			<%= image_tag @publication.cover %>
 		</div>
 		<div id="info">
-			<span>
-				<span class="pl">作者</span>: <%= @publication.authors %>
-			</span>
-			<br>
-			<% if !@publication.translators.blank? %>
-			<span>
-				<span class="pl">译者</span>: <%= @publication.translators %>
-			</span>
-			<br>
-			<% end %>
-			<span class="pl">出版社:</span> <%= @publication.publisher %><br>
-			<span class="pl">出版年:</span> <%= @publication.pubdate %><br>
-			<span class="pl">页数:</span> <%= @publication.pages %> <br>
-			<span class="pl">定价:</span> <%= @publication.price %><br>
-			<% if !@publication.binding.blank? %>
-				<span class="pl">装帧:</span> <%= @publication.binding %><br>
-			<% end %>
-			<span class="pl">ISBN:</span> <%= @publication.isbn %><br>
+			<ul>
+				<li>作者：<%= @publication.authors %></li>
+				<% if !@publication.translators.blank? %>
+					<li>译者：<%= @publication.translators %></li>
+				<% end %>
+				<li>出版社：<%= @publication.publisher %></li>
+				<li>出版年：<%= @publication.pubdate %></li>
+				<li>页数：<%= @publication.pages %> </li>
+				<li>定价：<span class="price_pre"><%= @publication.price %></span></li>
+				<% if !@publication.binding.blank? %>
+					<li>装帧：<%= @publication.binding %></li>
+				<% end %>
+				<li>ISBN：<%= @publication.isbn %></li>
+			</ul>
+			<div id="tags">
+				Tags：<% @publication.tags.each { |tag| %>
+					<%= link_to tag.name %>
+					<% } %>
+			</div>
+			
+		</div>
+		<div id="actions" style="background:#eee;">
+			<div id="borrow" onclick="javascript:borrow();">
+				我要借
+			</div>
 		</div>
 	</div>
-	<p>
-		<b>Count:</b>
-		<%= @publication.count %>
-	</p>
-	
-	<p>
-		<b>State:</b>
-		<%= @publication.status %>
-	</p>
-
-	<p>
-		<b>Contributor:</b>
-		<%= @publication.contributor.name %>
-	</p>
-
-	<p>
-		<b>Tags:</b>
-		<span class="tags">
-		<% @publication.tags.each { |tag| %>
-			<%= tag.name %>
-		<% } %>
-		</span>
-	</p>
-
-		<%= link_to 'Edit', edit_publication_path(@publication) %> |
-		<%= link_to 'Back', publications_path %>
+	<div class="related_info">
+		<h2>内容简介· · · · · ·</h2>
+		<div class="indent">
+			<%= "　　" + @publication.summary%>
+			<br />
+		</div>
+		<h2>作者简介· · · · · ·</h2>
+		<div class="intent">
+			<%= "　　" + @publication.authors%><br />
+			<%= "　　" + @publication.author_intro%><br />
+		</div>
+	</div>

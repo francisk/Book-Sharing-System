@@ -16,6 +16,10 @@ class Publication < ActiveRecord::Base
     return attribute.value unless attribute.nil?
   end
   
+  def author_intro
+    getAttr("author-intro")
+  end
+  
   def publisher
     getAttr("publisher")
   end
