@@ -3,8 +3,6 @@
 <head>
 	<title>Book</title>
 	<%= stylesheet_link_tag    "application", :media => "all" %>
-	<%= stylesheet_link_tag    "pagination", :media => "all" %>
-	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,63 +13,71 @@
 					<%= image_tag "logo.png" %>
 				</div>
 				<div id="searchf">
-					<form method="get" id="searchform" action="#">
-						<input type="text" name="s" id="searchbox" class="searchfield" value="Search" onfocus="if(this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}">
+					<form class="navbar-search pull-left">
+					  <input type="text" name="s" class="search-query" placeholder="Search">
 					</form>
 				</div>
 				<div class="clear"></div>
+				<div class="navbar">
+				  <div class="navbar-inner">
+				    <ul class="nav">
+				    	<li class="active"><%= link_to "首页", :root %></li>
+				      <li><a href="http://m.ituqu.com/?page_id=200">我的借阅</a></li>
+					<li><a href="http://m.ituqu.com/?page_id=102">我的分享</a></li>
+					<li><%= link_to "我的审批", :myAudit %></li>
+				    </ul>
+				  </div>
+				</div>
 
-				<div id="access">
-					<div class="menu">
-						<ul>
-							<li class="current_page_item">
-								<%= link_to "首页", :root %>
-							</li>
-							<li class="page_item page-item-200"><a href="http://m.ituqu.com/?page_id=200">我的借阅</a></li>
-							<li class="page_item page-item-102"><a href="http://m.ituqu.com/?page_id=102">我的分享</a>
-							</li>
-						</ul>
-					</div>
-				</div><!-- #access -->
 			</div><!-- #masthead -->
 		</div>
-		<div id="main">
-			<div id="content">
-				<%= yield %>
+		<div class="row">
+		  <div class="span9">
+		  	<%= yield %>
+		  </div>
+		  <div class="span3">
+			<div id="newest">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active">
+						<blockquote>
+							<a href="#"><span class="label label-info">最新分享</span></a>
+						</blockquote>
+					</li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+				</ul>
 			</div>
-			<div id="aside">
-				<div id="newest">
-					<h2>最新分享</h2>
-					<ul>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-					</ul>
-				</div>
-				<div id="hotest">
-					<h2>最热分享</h2>
-					<ul>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-						<li><a href="#">少有人走的路</a></li>
-					</ul>
-				</div>
-				<div id="users">
-					<h2>贡献排行</h2>
-					<ul>
-						<li><%= link_to current_user.name %></li>
-						<li><a href="#">XXX</a></li>
-						<li><a href="#">XXX</a></li>
-						<li><a href="#">XXX</a></li>
-						<li><a href="#">XXX</a></li>
-					</ul>
-				</div>
+			<div id="hotest">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active">
+						<blockquote>
+							<a href="#"><span class="label label-info">最新分享</span></a>
+						</blockquote>
+					</li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+				</ul>
+				
 			</div>
-			<div class="clear"></div>
+			<div id="users">
+				<ul class="nav nav-pills nav-stacked">
+					<li class="active">
+						<blockquote>
+							<a href="#"><span class="label label-info">最新分享</span></a>
+						</blockquote>
+					</li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+					<li><a href="#">少有人走的路</a></li>
+				</ul>
+				
+			</div>
+		  </div>
 		</div>
 		<div id="footer">
 			<div id="site-generator">

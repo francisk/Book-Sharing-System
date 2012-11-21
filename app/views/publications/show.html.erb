@@ -1,48 +1,47 @@
 <p>
-	<div class="title">
-		<h1>
-			<%= @publication.title %>
-		</h1>
-	</div>
-	<div class="subject clearfix">
-		<div id="mainpic">
-			<%= image_tag @publication.cover %>
+	<h4>
+		<%= @publication.title %>
+	</h4>
+	<div class="row">
+		<div class="span2">
+			<%= image_tag @publication.cover, :class => "img-polaroid", :size => "96x120" %>
 		</div>
-		<div id="info">
-			<ul>
+		<div class="span5">
+			<ul class="unstyled">
 				<li>作者：<%= @publication.authors %></li>
 				<% if !@publication.translators.blank? %>
-					<li>译者：<%= @publication.translators %></li>
+				<li>译者：<%= @publication.translators %></li>
 				<% end %>
 				<li>出版社：<%= @publication.publisher %></li>
 				<li>出版年：<%= @publication.pubdate %></li>
 				<li>页数：<%= @publication.pages %> </li>
 				<li>定价：<span class="price_pre"><%= @publication.price %></span></li>
 				<% if !@publication.binding.blank? %>
-					<li>装帧：<%= @publication.binding %></li>
+				<li>装帧：<%= @publication.binding %></li>
 				<% end %>
 				<li>ISBN：<%= @publication.isbn %></li>
 			</ul>
-			<div id="tags">
-				Tags：<% @publication.tags.each { |tag| %>
-					<%= link_to tag.name %>
-					<% } %>
-			</div>
-			
 		</div>
-		<div id="actions" style="background:#eee;">
-			<%= link_to "我要借", new_order_path(:publication => @publication) %>
+		<div class="span2">
+			<%= link_to "我要借", new_order_path(:publication => @publication), :class => "btn btn-large" %>
 		</div>
 	</div>
 	<div class="related_info">
-		<h2>内容简介· · · · · ·</h2>
-		<div class="indent">
-			<%= "　　" + @publication.summary%>
-			<br />
-		</div>
-		<h2>作者简介· · · · · ·</h2>
+		<br />
+		<br />
+		<h5><blockquote>内容简介</blockquote></h5>
+		<div class="well"><p><%= @publication.summary%></p></div>
+		<br />
+		<br />
+		<h5><blockquote>作者简介</blockquote></h5>
+		<div class="well"><p><%= @publication.author_intro%></p></div>
+		<br />
+		<br />
+		<h5><blockquote>常用标签</blockquote></h5>
 		<div class="intent">
-			<%= "　　" + @publication.authors%><br />
-			<%= "　　" + @publication.author_intro%><br />
+			<% @publication.tags.each { |tag| %>
+				<%= link_to tag.name, tag, :class => "label" %>
+		     	<% } %>
 		</div>
 	</div>
+</p>

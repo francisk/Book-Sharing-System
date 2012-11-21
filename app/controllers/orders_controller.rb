@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
+  
   def index
     @orders = Order.all
 
@@ -9,6 +10,16 @@ class OrdersController < ApplicationController
       format.json { render :json => @orders }
     end
   end
+  
+  def myAudit
+    @orders = Order.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render :json => @orders }
+    end
+  end
+  
 
   # GET /orders/1
   # GET /orders/1.json
@@ -31,6 +42,13 @@ class OrdersController < ApplicationController
       format.html # new.html.erb
       format.json { render :json => @order }
     end
+  end
+  
+  def audit
+    @order = Order.find(params[:order_id])
+    @order.state = Order::STATE_BORROW_AUDITED
+    @order.auditDate = now()
+    @order.save
   end
 
   # GET /orders/1/edit

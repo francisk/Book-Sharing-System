@@ -1,45 +1,35 @@
-<div class="book_list" id="list_<%= publication.id %>">
-	<div class="book_pic">
-		<%= image_tag publication.cover %>
-	</div>
-	<div class="book_info">
-		<ul>
-			<li class="bookname blue">
-				<%= link_to publication.title, publication %>
+<tr>
+	<td style="vertical-align:middle">
+		<%= image_tag publication.cover, :class => "img-polaroid", :size => "96x120" %>
+	</td>
+	<td>
+		<ul class="unstyled">
+			<li>
+				<h5><%= link_to publication.title, publication %></h5>
 			</li>
-			<li class="author">作者：<%= publication.authors %>　著
+			<li>作者：<%= publication.authors %>　著
 				<% if !publication.translators.empty? %>
-					，
-					<%= publication.translators%>　译
+				，
+				<%= publication.translators%>　译
 				<% end %>
 			</li>
-			<li class="press">出版社：<%= publication.publisher %></li>
-			<li class="press_date">出版时间：<%= publication.pubdate %></li>
-			<li class="price">
-				定价：￥<span class="price_pre arial"><%= publication.price %></span>
-			</li>
-			<li class="appraise">
-				<span class="writerno">16261 人读过</span>
-			</li>
-		</ul>
-	</div>
-	<div class="arrow">
-		<span class="strong">谁有这本书：</span>
-		<hr />
-		<ul>
-			<% publication.publications.each do |publication| %>
+			<li>出版社：<%= publication.publisher %></li>
+			<li>出版时间：<%= publication.pubdate %></li>
 			<li>
-				<%= link_to publication.contributor.name, publication %>
+				定价：￥<span><%= publication.price %></span>
 			</li>
-			<% end %>
+			<li>
+				<span>16261 人读过</span>
+			</li>
+			<li>
+				<span>贡献者：</span>
+				<% publication.publications.each do |publication| %>
+				<%= link_to publication.contributor.name, publication, :class => "label" %>
+				<% end %>
+			</li>
 		</ul>
-			<!-- <li class="action">
-							<span class="btn_collect">
-								<%= image_tag "btn_buy.gif" %>
-							</span>
-							<span class="btn_buy">
-								<%= image_tag "btn_buy.gif" %>
-							</span>
-						</li> -->
-	</div>
-</div>
+	</td>
+	<td style="vertical-align:middle">
+		<a href="#" class="btn btn-large btn-info">我要借</a>
+	</td>
+</tr>

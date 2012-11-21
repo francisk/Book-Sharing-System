@@ -1,0 +1,43 @@
+<div id="div_order_all">
+	<div class="business_box">
+		<div class="business_box_border">
+			<div>
+				<div id="rpt_cart_items">
+					<table border="0" id="tbl_myAudit" cellpadding="1">
+						<tr>
+							<td>名称</td>
+							<td>自提点</td>
+							<td>借阅人</td>
+							<td>申请时间</td>
+							<td>价格</td>
+							<td>操作</td>
+						</tr>
+						<% @orders.each do |order| %>
+						<tr>
+							<td>
+								<%= link_to order.publication.title, order.publication %>
+							</td>
+							<td>
+								<%= order.publication.location %>
+							</td>
+							<td>
+								<%= order.reader.name %>
+							</td>
+							<td>
+								<%= order.created_at %>
+							</td>
+							<td>
+								<%= order.publication.price %>
+							</td>
+							<td>
+								<%= button_to "同意", :action => "audit", :order_id => order.id %>
+								<%= button_to "拒绝", :action => "audit", :order_id => order.id %>
+							</td>
+						</tr>
+						<% end %>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

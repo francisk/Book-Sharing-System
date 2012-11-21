@@ -8,6 +8,8 @@ Book::Application.routes.draw do
   resources :publications
 
   resources :users
+  
+  match "myAudit" => "orders#myAudit"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
