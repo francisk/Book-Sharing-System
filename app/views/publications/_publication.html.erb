@@ -5,7 +5,7 @@
 	<td>
 		<ul class="unstyled">
 			<li>
-				<h5><%= link_to publication.title, publication %></h5>
+				<h5><%= link_to publication.title, publication, :target => "_blank" %></h5>
 			</li>
 			<li>作者：<%= publication.authors %>　著
 				<% if !publication.translators.empty? %>
