@@ -10,16 +10,20 @@
 	</ul>
 </div>
 <% end %>
-
-<div class="field">
-	<%= f.label :isbn %><br />
-	<%= f.text_field :isbn %>
-</div>
-<div class="field">
-	<%= f.label :location %><br />
+<fieldset>
+	<legend>新的分享</legend>
+	<label>ISBN：</label>
+	<div class="input-append">
+		<%= f.text_field :isbn %>
+		<button id="btn_isbn_help" class="btn" type="button">?</button>
+	</div>
+	<label>提取地点：</label>
 	<%= f.text_field :location %>
-</div>
+</fieldset>
+
 <div class="actions">
-	<%= f.submit %>
+	<button type="submit" class="btn">提交</button>
 </div>
 <% end %>
+
+<%= javascript_include_tag "/publications/publication_form.js" %> 

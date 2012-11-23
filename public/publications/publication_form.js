@@ -1,0 +1,1 @@
+$("#btn_isbn_help").popover({trigger:"hover", title:"书背面右下角", html:true, content:"<img src='/assets/isbn.jpeg' />"});
