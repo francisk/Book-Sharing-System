@@ -66,4 +66,5 @@ class Publication < ActiveRecord::Base
                   :class_name => "Attribute", 
                   :foreign_key => "publication_id",
                   :dependent => :destroy
+                  
 end

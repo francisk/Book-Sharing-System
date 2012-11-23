@@ -1,4 +1,12 @@
 Book::Application.routes.draw do
+
+resources :publications do
+        collection do
+                get 'search'
+        end
+    
+end
+
   resources :orders
 
   resources :attributes
@@ -11,6 +19,7 @@ Book::Application.routes.draw do
   
   match "myAudit" => "orders#myAudit"
 
+ 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

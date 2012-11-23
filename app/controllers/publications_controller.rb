@@ -4,11 +4,18 @@ require 'json'
 class PublicationsController < ApplicationController
 
   @@apikey = "0151de22e015f5a903f59a68a041e0fb"
+  @@PAGENO = 5
+  
+  def search
+    @publications = Publication.search(:isbn_or_title_or_additional_attributes_value_contains => params[:keyword]).group(:isbn).paginate(:page => params[:page], :per_page => @@PAGENO, :order => 'created_at desc')
+        
+    render :action => :index
+  end
   
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.group(:isbn).paginate(:page => params[:page], :per_page => 2, :order => 'created_at desc')
+    @publications = Publication.group(:isbn).paginate(:page => params[:page], :per_page => @@PAGENO, :order => 'created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
