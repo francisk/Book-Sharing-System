@@ -6,8 +6,10 @@ gem 'rails', '3.2.3'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-
+gem 'sqlite3'
 gem 'json'
+gem 'therubyracer'
+gem 'execjs'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -41,3 +43,7 @@ gem "meta_search"
 
 # To use debugger
 # gem 'ruby-debug'
+group :development do
+  gem 'rspec-rails'
+  gem 'spork'
+end
