@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json

@@ -1,7 +1,8 @@
+# -*- encoding : utf-8 -*-
 class Publication < ActiveRecord::Base
   attr_accessible :contributor, :cover, :isbn, :state, :title, :summary, :doubanURL, :location
 
-  STATE = ["未审核", "在馆", "借出"]
+  STATE = ["待审核", "在馆", "借出"]
   
   STATE_NOT_AUTH = 0
   STATE_IN = 1

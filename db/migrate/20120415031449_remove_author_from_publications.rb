@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class RemoveAuthorFromPublications < ActiveRecord::Migration
   def up
     remove_column :publications, :author

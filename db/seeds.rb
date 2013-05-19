@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -5,6 +6,11 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Emanuel', :city => cities.first)
+
+User.delete_all
+User.create :name => '韩寒', :email => 'admin@hanhan.com', :phone => '13300000001', :itcode => 'hanhan'
+User.create :name => '老罗', :email => 'laoluo@chuizi.com', :phone => '13300000002', :itcode => 'laoluo'
+User.create :name => '雷布斯', :email => 'leibusi@xiaomi.com', :phone => '13300000003', :itcode => 'leibusi'
 
 Publication.delete_all
 (0..100).each do |i|

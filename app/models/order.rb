@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Order < ActiveRecord::Base
   attr_accessible :auditDate, :publication, :reader, :revertDate, :state
   

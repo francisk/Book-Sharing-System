@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class AttributesController < ApplicationController
   # GET /attributes
   # GET /attributes.json
